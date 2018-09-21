@@ -1,0 +1,11 @@
+Notes from the Traversy Media tutorial:
+-soup.select() will return the parameter as a list. Can do select()[i] for an individual
+-soup.body, .head, .head.title would return the body, head, and title of the head respectively
+-soup.find('div') would return the FIRST div
+-soup.findAll('div') returns list of all divs, but can narrow it to one with index
+-.getText() is a method to return just the text of a find() or select()
+-can loop through a list of items and use getText() to print all them out
+-soup.body.contents[0] returns a new line, html tag would be in [1]
+-can find next sibling using contents[i].findNextSibling() - won't give new line
+-inversely there is previousSibling(). Also a findParent()
+-for these methods, you can pass in a tag to search from like findNextSibling('p')
