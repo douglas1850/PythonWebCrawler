@@ -15,11 +15,17 @@ soup = BeautifulSoup(response.text, 'html.parser') #pulls in webpage
 
 posts = soup.find_all(class_='product_pod')
 
-for post in posts:
-    title = post.findAll('a')[1].get_text()
+with open('books.csv', 'w') as csv_file:
+    csv_writer = writer(csv_file)
+    headers = ['Title', 'Price']
+    csv_writer.writerow(headers)
 
-    price = post.findAll(class_='price_color')[0].get_text()
-    price = price[1:] #removing weird character from front of price
+    for post in posts:
+        title = post.findAll('a')[1].get_text()
 
-    print("Title: " + title + "\n"
-                              "Price: " + price + "\n")
+        price = post.findAll(class_='price_color')[0].get_text()
+        price = price[1:] #removing weird character from front of price
+
+        print("Title: " + title + "\n"
+                                  "Price: " + price + "\n")
+        csv_writer.writerow([title, price])
