@@ -1,6 +1,7 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, SoupStrainer
 from csv import writer
+import httplib2
 
 """Creating a Python web parser using BeautifulSoup
 Using scraping sandbox website: http://books.toscrape.com/index.html
@@ -29,3 +30,10 @@ with open('books.csv', 'w') as csv_file:
         print("Title: " + title + "\n"
                                   "Price: " + price + "\n")
         csv_writer.writerow([title, price])
+
+http = httplib2.Http()
+status, response = http.request('http://books.toscrape.com/catalogue/category/books_1/index.html')
+
+for link in BeautifulSoup(response, parse_only=SoupStrainer('a')):
+    if link.has_attr('href'):
+        print(link['href'])
