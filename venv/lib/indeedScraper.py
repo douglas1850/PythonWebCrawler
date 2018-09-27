@@ -10,7 +10,6 @@ posts = soup.find_all(class_='jobTitle')
 
 posts2 = soup.find(class_='companyName')
 
-
 for post in posts:
     title = post.find('a').get_text()
     link = post.find('a', href=True)
@@ -38,4 +37,4 @@ for post in posts:
     print(location)
     print(salary)
     print(jobLink)
-    print("-" * 40)
+    print("-" * 60)
